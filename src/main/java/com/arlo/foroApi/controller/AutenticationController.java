@@ -23,13 +23,13 @@ public class AutenticationController {
     @Autowired
     private TokenService tokenService;
 
-
     @PostMapping
     public ResponseEntity autenticarUsuario(@RequestBody @Valid DatosAutenticacacionUsuario datosAutenticacacionUsuario){
-        Authentication authTtoken = new UsernamePasswordAuthenticationToken(datosAutenticacacionUsuario.login(),
+        Authentication authToken = new UsernamePasswordAuthenticationToken(datosAutenticacacionUsuario.login(),
                 datosAutenticacacionUsuario.clave());
-        var usurarioAutenticado = autenticationManager.authenticate(authTtoken);
+        var usurarioAutenticado = autenticationManager.authenticate(authToken);
         var JWTtoken = tokenService.generarToken((Usuario) usurarioAutenticado.getPrincipal());
+        System.out.println(JWTtoken);
         return ResponseEntity.ok(new DatosJWTtoken(JWTtoken));
     }
 }

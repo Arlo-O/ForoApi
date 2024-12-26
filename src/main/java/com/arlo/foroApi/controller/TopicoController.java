@@ -18,7 +18,6 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/topicos")
-
 public class TopicoController {
     @Autowired
     private TopicoRepository topicoRepository;
